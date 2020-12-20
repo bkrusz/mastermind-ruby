@@ -1,11 +1,9 @@
 require './Series'
+require './Display'
 
-series = Series.new('1234')
-
-print series.series
-
-series.series = '5678'
+series = Series.new('3857')
+display = Display.new
 
 print series.series
 
-print series.equals?('5678')
+display.hint(series.full_comparison('3875'))
