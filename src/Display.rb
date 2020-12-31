@@ -16,6 +16,7 @@ class Display
     puts 'and the player will have 8 attempts to guess it correct, where a correct'
     puts 'number is indicated with a 1, and a correct number in the correct position'
     puts 'is indicated with a 2'
+    puts ''
   end
 
   def hint(comparison)
@@ -29,5 +30,4 @@ class Display
   def win
     print ''
   end
-
 end

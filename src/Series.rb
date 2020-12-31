@@ -2,13 +2,20 @@ class Series
   attr_reader :series
   attr_accessor :turn_count
 
-  def initialize(series_string)
-    @series = series_string.split(//, 4)
+  def initialize
+    @series = Array.new(4)
+    random_series
     @turn_count = 0
   end
 
   def series=(series_string)
     @series = series_string.split(//, 4)
+  end
+
+  def random_series
+    (0..3).each do |i|
+      @series[i] = (rand 0..6).to_s
+    end
   end
 
   def equals?(guess)
@@ -25,15 +32,15 @@ class Series
 
   def full_comparison(guess)
     hint_array = Array.new(4)
-    for i in 0..3
-      if equals_at_index?(guess, i)
-        hint_array[i] = 2
-      elsif include?(guess, i)
-        hint_array[i] = 1
-      else
-        hint_array[i] = 0
-      end
+    (0..3).each do |i|
+      hint_array[i] = if equals_at_index?(guess, i)
+                        2
+                      elsif include?(guess, i)
+                        1
+                      else
+                        0
+                      end
     end
-    return hint_array.sort.reverse
+    hint_array.sort.reverse
   end
 end
